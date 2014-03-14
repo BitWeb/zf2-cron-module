@@ -2,7 +2,6 @@
 
 namespace CronModule\Factory;
 
-use Composer\Config;
 use CronModule\Configuration;
 use CronModule\Service\CronService;
 use Zend\ServiceManager\FactoryInterface;
