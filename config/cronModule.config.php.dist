@@ -1,0 +1,11 @@
+<?php
+return array(
+    'phpPath' => 'php',
+    'scriptPath' => '/var/www/application/public/',
+    'jobs' => array(
+        array(
+            'command' => 'index.php application cron mail',
+            'schedule' => '*/5 * * * *'
+        )
+    )
+);

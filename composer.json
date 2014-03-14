@@ -1,0 +1,18 @@
+{
+    "name": "bitweb/zf2-cron-module",
+    "description": "BitWeb ZF2 module for cron.",
+    "license": "proprietary",
+    "homepage": "http://bitweb.ee/",
+    "require": {
+        "php": ">=5.3.3",
+        "cron/cron": "1.0.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": ["src/", "test/"]
+        }
+    }
+}
