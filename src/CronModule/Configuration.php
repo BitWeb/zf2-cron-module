@@ -27,6 +27,13 @@ class Configuration
      */
     protected $scriptPath = null;
 
+    /**
+     * Timeout in seconds for the process. Defaults to 600 seconds. null for no timeout.
+     *
+     * @var int
+     */
+    protected $timeout = 600;
+
     public function __construct($config = null)
     {
         if (null !== $config) {
@@ -123,11 +130,14 @@ class Configuration
     }
 
     /**
-     * @param string $scriptPath
+     * @param null $scriptPath
+     * @return $this
      */
     public function setScriptPath($scriptPath = null)
     {
         $this->scriptPath = $scriptPath;
+
+        return $this;
     }
 
     /**
@@ -136,5 +146,24 @@ class Configuration
     public function getScriptPath()
     {
         return $this->scriptPath;
+    }
+
+    /**
+     * @param $timeOut
+     * @return $this
+     */
+    public function setTimeout($timeOut)
+    {
+        $this->timeout = $timeOut;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
     }
 }

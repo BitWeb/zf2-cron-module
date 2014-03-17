@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "CronModule": "src/"
+            "CronModule": ["src/", "test/"]
         },
         "classmap": [
             "./Module.php"

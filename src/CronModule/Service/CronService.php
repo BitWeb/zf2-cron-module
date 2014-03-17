@@ -3,11 +3,12 @@
 namespace CronModule\Service;
 
 use Cron\Cron;
-use Cron\Executor\Executor;
 use Cron\Job\ShellJob;
 use Cron\Resolver\ArrayResolver;
 use Cron\Schedule\CrontabSchedule;
 use CronModule\Configuration;
+use CronModule\Exception\TimeoutException;
+use CronModule\Executor\Executor;
 
 class CronService
 {
@@ -26,6 +27,16 @@ class CronService
      */
     protected $cron = null;
 
+    /**
+     * @var Executor
+     */
+    protected $executor = null;
+
+    /**
+     * @var int
+     */
+    protected $startTime = null;
+
     public function __construct(Configuration $configuration)
     {
         $this->setConfiguration($configuration);
@@ -41,10 +52,15 @@ class CronService
     public function run()
     {
         $this->initResolver();
+        $this->initExecutor();
         $this->initCron();
         $this->addJobs();
 
+        $this->startTime = time();
+
         $this->cron->run();
+        $this->wait();
+        $this->throwErrorIfTimeout();
     }
 
     protected function initResolver()
@@ -52,11 +68,16 @@ class CronService
         $this->resolver = new ArrayResolver();
     }
 
+    protected function initExecutor()
+    {
+        $this->executor = new Executor();
+    }
+
     protected function initCron()
     {
         $this->cron = new Cron();
         $this->cron->setResolver($this->resolver);
-        $this->cron->setExecutor(new Executor());
+        $this->cron->setExecutor($this->executor);
     }
 
     protected function addJobs()
@@ -74,4 +95,43 @@ class CronService
     {
         return $this->configuration->getPhpPath() . ' ' . $this->configuration->getScriptPath() . $command;
     }
-} 
+
+    protected function wait()
+    {
+        while ($this->cron->isRunning() && $this->checkTimeout()) {
+            sleep(1);
+        }
+    }
+
+    protected function checkTimeout()
+    {
+        $timeout = $this->configuration->getTimeout();
+        if ($timeout !== null && $timeout > (time() - $this->startTime)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function throwErrorIfTimeout()
+    {
+        if ($this->checkTimeout()) {
+
+            $this->executor->getRunningJobs();
+
+            throw new TimeoutException();
+        }
+    }
+
+    protected function assembleErrorString()
+    {
+        $string = 'Jobs: ';
+        $i = 1;
+        foreach ($this->executor->getRunningJobs() as $job) {
+            $string .= $i . '. ' . $job->getProcess()->getCommandLine() . ' ';
+            $i++;
+        }
+
+        return $string . ' have taken over ' . $this->configuration->getTimeout() . ' seconds to execute.';
+    }
+}
