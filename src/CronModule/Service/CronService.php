@@ -123,10 +123,10 @@ class CronService
 
     protected function assembleErrorString()
     {
-        $string = 'Jobs: ';
+        $string = 'Jobs: ' . PHP_EOL;
         $i = 1;
         foreach ($this->executor->getRunningJobs() as $job) {
-            $string .= $i . '. ' . $job->getProcess()->getCommandLine() . ' ';
+            $string .= $i . '. ' . $job->getProcess()->getCommandLine() . PHP_EOL;
             $i++;
         }
 
