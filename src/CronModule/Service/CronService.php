@@ -98,9 +98,10 @@ class CronService
 
     protected function wait()
     {
-        while ($this->cron->isRunning() && $this->checkTimeout()) {
+        do  {
             sleep(1);
         }
+        while ($this->cron->isRunning() && !$this->checkTimeout());
     }
 
     protected function checkTimeout()
@@ -116,10 +117,7 @@ class CronService
     protected function throwErrorIfTimeout()
     {
         if ($this->checkTimeout()) {
-
-            $this->executor->getRunningJobs();
-
-            throw new TimeoutException();
+            throw new TimeoutException($this->assembleErrorString());
         }
     }
 
