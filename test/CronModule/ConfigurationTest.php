@@ -2,8 +2,6 @@
 
 namespace CronModule;
 
-use CronModule\TestAsset\TraversableConfig;
-
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     public $correctConfig = array(
