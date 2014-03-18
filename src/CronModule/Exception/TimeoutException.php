@@ -2,8 +2,7 @@
 
 namespace CronModule\Exception;
 
-
-class TimeoutException extends \RuntimeException
+class TimeoutException extends RuntimeException
 {
 
 }

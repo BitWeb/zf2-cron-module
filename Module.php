@@ -3,8 +3,6 @@
 namespace CronModule;
 
 use Zend\Console\Adapter\AdapterInterface;
-use Zend\Console\Console;
-use Zend\Mvc\MvcEvent;
 
 class Module
 {

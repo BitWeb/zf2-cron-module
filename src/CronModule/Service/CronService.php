@@ -49,35 +49,42 @@ class CronService
         return $this;
     }
 
+
+    protected function getResolver()
+    {
+        if ($this->resolver === null) {
+            $this->resolver = new ArrayResolver();
+        }
+
+        return $this->resolver;
+    }
+
+    protected function getExecutor()
+    {
+        if ($this->executor === null) {
+            $this->executor = new Executor();
+        }
+
+        return $this->executor;
+    }
+
     public function run()
     {
-        $this->initResolver();
-        $this->initExecutor();
+        $this->startTime = time();
+
         $this->initCron();
         $this->addJobs();
-
-        $this->startTime = time();
 
         $this->cron->run();
         $this->wait();
         $this->throwErrorIfTimeout();
     }
 
-    protected function initResolver()
-    {
-        $this->resolver = new ArrayResolver();
-    }
-
-    protected function initExecutor()
-    {
-        $this->executor = new Executor();
-    }
-
     protected function initCron()
     {
         $this->cron = new Cron();
-        $this->cron->setResolver($this->resolver);
-        $this->cron->setExecutor($this->executor);
+        $this->cron->setResolver($this->getResolver());
+        $this->cron->setExecutor($this->getExecutor());
     }
 
     protected function addJobs()
@@ -87,7 +94,7 @@ class CronService
             $job->setCommand($this->assembleShellJobString($jobArray['command']));
             $job->setSchedule(new CrontabSchedule($jobArray['schedule']));
 
-            $this->resolver->addJob($job);
+            $this->getResolver()->addJob($job);
         }
     }
 
@@ -98,10 +105,9 @@ class CronService
 
     protected function wait()
     {
-        do  {
+        do {
             sleep(1);
-        }
-        while ($this->cron->isRunning() && !$this->checkTimeout());
+        } while ($this->cron->isRunning() && !$this->checkTimeout());
     }
 
     protected function checkTimeout()
@@ -125,7 +131,7 @@ class CronService
     {
         $string = 'Jobs: ' . PHP_EOL;
         $i = 1;
-        foreach ($this->executor->getRunningJobs() as $job) {
+        foreach ($this->getExecutor()->getRunningJobs() as $job) {
             $string .= $i . '. ' . $job->getProcess()->getCommandLine() . PHP_EOL;
             $i++;
         }

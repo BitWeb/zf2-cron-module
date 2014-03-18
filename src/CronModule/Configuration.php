@@ -149,12 +149,12 @@ class Configuration
     }
 
     /**
-     * @param $timeOut
+     * @param $timeout
      * @return $this
      */
-    public function setTimeout($timeOut)
+    public function setTimeout($timeout)
     {
-        $this->timeout = $timeOut;
+        $this->timeout = $timeout;
 
         return $this;
     }
