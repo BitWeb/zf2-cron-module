@@ -6,6 +6,7 @@
     "require": {
         "php": ">=5.3.3",
         "cron/cron": "1.0.0",
+        "bitweb/stdlib": "dev-master",
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-console": "~2.2",
         "zendframework/zend-servicemanager": "~2.2",

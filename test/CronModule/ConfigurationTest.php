@@ -24,7 +24,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \CronModule\Exception\InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testThrowsErrorWhenNotArrayOrTraversable()
     {
@@ -33,7 +33,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \CronModule\Exception\BadMethodCallException
+     * @expectedException \BadMethodCallException
      */
     public function testThrowsErrorWhenConfigurationKeyDoesNotExist()
     {

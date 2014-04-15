@@ -2,9 +2,10 @@
 
 namespace CronModule;
 
+use BitWeb\Stdlib\AbstractConfiguration;
 use Zend\Stdlib;
 
-class Configuration
+class Configuration extends AbstractConfiguration
 {
     /**
      * Array of shell jobs.
@@ -33,42 +34,6 @@ class Configuration
      * @var int
      */
     protected $timeout = 600;
-
-    public function __construct($config = null)
-    {
-        if (null !== $config) {
-            if (is_array($config)) {
-                $this->processArray($config);
-            } elseif ($config instanceof \Traversable) {
-                $this->processArray(Stdlib\ArrayUtils::iteratorToArray($config));
-            } else {
-                throw new Exception\InvalidArgumentException(
-                    'Parameter to \\CronModule\\Configuration\'s constructor must be an array or implement the \\Traversable interface'
-                );
-            }
-        }
-    }
-
-    protected function processArray($config)
-    {
-        foreach ($config as $key => $value) {
-            $setter = $this->assembleSetterNameFromConfigKey($key);
-            $this->{$setter}($value);
-        }
-    }
-
-    protected function assembleSetterNameFromConfigKey($key)
-    {
-        $parts = explode('_', $key);
-        $parts = array_map('ucfirst', $parts);
-        $setter = 'set' . implode('', $parts);
-        if (!method_exists($this, $setter)) {
-            throw new Exception\BadMethodCallException(
-                'The configuration key "' . $key . '" does not have a matching ' . $setter . ' setter method which must be defined'
-            );
-        }
-        return $setter;
-    }
 
     /**
      * @param array $shellJobs
