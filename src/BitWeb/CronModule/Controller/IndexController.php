@@ -1,10 +1,10 @@
 <?php
 
-namespace CronModule\Controller;
+namespace BitWeb\CronModule\Controller;
 
-use CronModule\Exception\RuntimeException;
-use CronModule\Service\Cron\CronServiceAwareInterface;
-use CronModule\Service\Cron\CronServiceAwareTrait;
+use BitWeb\CronModule\Exception\RuntimeException;
+use BitWeb\CronModule\Service\Cron\CronServiceAwareInterface;
+use BitWeb\CronModule\Service\Cron\CronServiceAwareTrait;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Mvc\Controller\AbstractActionController;
 

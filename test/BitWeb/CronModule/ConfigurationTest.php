@@ -1,45 +1,26 @@
 <?php
 
-namespace CronModule;
+namespace BitWeb\CronModule;
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
-    public $correctConfig = array(
+    public $correctConfig = [
         'phpPath' => 'php',
         'scriptPath' => '/var/www/application/public/',
-        'jobs' => array(
-            array(
+        'jobs' => [
+            [
                 'command' => 'index.php application cron mail',
                 'schedule' => '*/5 * * * *'
-            )
-        ),
+            ]
+        ],
 
         // timeout in seconds for the process, defaults to 600 seconds
         'timeout' => 850
-    );
+    ];
 
     public function testCanCreate()
     {
         $this->assertInstanceOf(Configuration::class, new Configuration($this->correctConfig));
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testThrowsErrorWhenNotArrayOrTraversable()
-    {
-        new Configuration();
-        new Configuration('string');
-    }
-
-    /**
-     * @expectedException \BadMethodCallException
-     */
-    public function testThrowsErrorWhenConfigurationKeyDoesNotExist()
-    {
-        new Configuration(array(
-            'wrongKey' => 'noValue'
-        ));
     }
 
     public function testGetAndSetJobs()

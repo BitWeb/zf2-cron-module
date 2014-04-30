@@ -1,6 +1,6 @@
 <?php
 
-namespace CronModule\Executor;
+namespace BitWeb\CronModule\Executor;
 
 
 class Executor extends \Cron\Executor\Executor
@@ -10,7 +10,7 @@ class Executor extends \Cron\Executor\Executor
      */
     public function getRunningJobs()
     {
-        $jobs = array();
+        $jobs = [];
         foreach ($this->sets as $set) {
             if ($set->getJob()->isRunning()) {
                 $jobs[] = $set->getJob();

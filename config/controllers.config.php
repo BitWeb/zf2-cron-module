@@ -1,17 +1,17 @@
 <?php
 
 return array(
-    'invokables' => array(
+    'invokables' => [
         'CronModule\Controller\Index' => 'CronModule\Controller\IndexController'
-    ),
-    'initializers' => array(
+    ],
+    'initializers' => [
         function ($controller, \Zend\Mvc\Controller\ControllerManager $cm)
         {
-            if ($controller instanceof \CronModule\Service\Cron\CronServiceAwareInterface) {
+            if ($controller instanceof \BitWeb\CronModule\Service\Cron\CronServiceAwareInterface) {
                 $controller->setCronService($cm->getServiceLocator()->get('CronModule\Service\Cron'));
             }
 
             return $controller;
         }
-    )
+    ]
 );

@@ -1,7 +1,7 @@
 <?php
 
-return array(
+return [
     'factories' => array(
-        'CronModule\Service\Cron' => 'CronModule\Factory\CronServiceFactory'
+        'BitWeb\CronModule\Service\Cron' => 'BitWeb\CronModule\Factory\CronServiceFactory'
     )
-);
+];

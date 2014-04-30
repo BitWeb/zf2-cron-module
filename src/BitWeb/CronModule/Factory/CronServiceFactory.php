@@ -1,9 +1,9 @@
 <?php
 
-namespace CronModule\Factory;
+namespace BitWeb\CronModule\Factory;
 
-use CronModule\Configuration;
-use CronModule\Service\CronService;
+use BitWeb\CronModule\Configuration;
+use BitWeb\CronModule\Service\CronService;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace CronModule\Service;
+namespace BitWeb\CronModule\Service;
 
 use Cron\Cron;
 use Cron\Job\ShellJob;
 use Cron\Resolver\ArrayResolver;
 use Cron\Schedule\CrontabSchedule;
-use CronModule\Configuration;
-use CronModule\Exception\TimeoutException;
-use CronModule\Executor\Executor;
+use BitWeb\CronModule\Configuration;
+use BitWeb\CronModule\Exception\TimeoutException;
+use BitWeb\CronModule\Executor\Executor;
 
 class CronService
 {
@@ -37,11 +37,6 @@ class CronService
      */
     protected $startTime = null;
 
-    public function __construct(Configuration $configuration)
-    {
-        $this->setConfiguration($configuration);
-    }
-
     public function setConfiguration(Configuration $configuration)
     {
         $this->configuration = $configuration;
@@ -49,8 +44,15 @@ class CronService
         return $this;
     }
 
+    public function setCron(Cron $cron) {
+        $this->cron = $cron;
+    }
 
-    protected function getResolver()
+    public function setExecutor(Executor $executor) {
+        $this->executor = $executor;
+    }
+
+    public function getResolver()
     {
         if ($this->resolver === null) {
             $this->resolver = new ArrayResolver();
@@ -59,13 +61,18 @@ class CronService
         return $this->resolver;
     }
 
-    protected function getExecutor()
+    public function getExecutor()
     {
         if ($this->executor === null) {
             $this->executor = new Executor();
         }
 
         return $this->executor;
+    }
+
+    public function __construct(Configuration $configuration)
+    {
+        $this->setConfiguration($configuration);
     }
 
     public function run()
@@ -82,7 +89,10 @@ class CronService
 
     protected function initCron()
     {
-        $this->cron = new Cron();
+        if ($this->cron == null) {
+            $this->cron = new Cron();
+        }
+
         $this->cron->setResolver($this->getResolver());
         $this->cron->setExecutor($this->getExecutor());
     }
