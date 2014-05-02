@@ -5,6 +5,7 @@ namespace BitWebTest\CronModule\Service;
 use BitWeb\CronModule\Configuration;
 use BitWeb\CronModule\Executor\Executor;
 use BitWeb\CronModule\Service\CronService;
+use BitWebTest\CronModule\TestAsset\TestService;
 use Cron\Cron;
 use Cron\Job\ShellJob;
 use Cron\Resolver\ArrayResolver;
@@ -108,6 +109,13 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
         $service->setExecutor($executorMock);
         $service->run();
         sleep(3);
+    }
+
+    public function testCronServiceAwareTrait()
+    {
+        $service = new TestService();
+        $service->setCronService(new CronService(new Configuration($this->correctConfig)));
+        $this->assertInstanceOf(CronService::class, $service->getCronService());
     }
 
 
