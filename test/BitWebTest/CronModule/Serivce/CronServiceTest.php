@@ -19,19 +19,10 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
      */
     public $configuration;
 
-    public $correctConfig = [
-        'phpPath' => 'php',
-        'scriptPath' => '/var/www/application/public/',
-        'jobs' => [
-            [
-                'command' => 'index.php application cron mail',
-                'schedule' => '*/5 * * * *'
-            ]
-        ],
-
-        // timeout in seconds for the process, defaults to 600 seconds
-        'timeout' => 2
-    ];
+    public function setUp()
+    {
+        $this->configuration = new Configuration(include 'BitWebTest/CronModule/TestAsset/config.php');
+    }
 
 
     protected static function getMethod($class, $name)
@@ -44,24 +35,24 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testCanCreate()
     {
-        $this->assertInstanceOf(CronService::class, new CronService(new Configuration($this->correctConfig)));
+        $this->assertInstanceOf(CronService::class, new CronService($this->configuration));
     }
 
     public function testGetResolverInstance()
     {
-        $this->assertInstanceOf(ArrayResolver::class, (new CronService(new Configuration($this->correctConfig)))->getResolver());
+        $this->assertInstanceOf(ArrayResolver::class, (new CronService($this->configuration))->getResolver());
     }
 
     public function testGetExecutorInstance()
     {
-        $service = new CronService(new Configuration($this->correctConfig));
+        $service = new CronService($this->configuration);
         $method = self::getMethod(CronService::class, 'getExecutor');
         $this->assertInstanceOf(Executor::class, $method->invokeArgs($service, array()));
     }
 
     public function testInitCron()
     {
-        $service = new CronService(new Configuration($this->correctConfig));
+        $service = new CronService($this->configuration);
         $method = self::getMethod(CronService::class, 'initCron');
         $method->invokeArgs($service, array());
         $this->assertInstanceOf(Cron::class, \PHPUnit_Framework_Assert::readAttribute($service, 'cron'));
@@ -71,7 +62,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testRun()
     {
-        $this->configuration = new Configuration($this->correctConfig);
         $jobs = array();
         foreach ($this->configuration->getJobs() as $jobArray) {
             $job = new ShellJob();
@@ -101,7 +91,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
     {
         $job = new ShellJob();
         $job->setCommand('index.php application cron mail');
-        $this->configuration = new Configuration($this->correctConfig);
         $executorMock = $this->getMock(Executor::class);
         $executorMock->expects($this->any())->method('isRunning')->will($this->returnValue(true));
         $executorMock->expects($this->any())->method('getRunningJobs')->will($this->returnValue(array($job)));
@@ -114,7 +103,7 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
     public function testCronServiceAwareTrait()
     {
         $service = new TestService();
-        $service->setCronService(new CronService(new Configuration($this->correctConfig)));
+        $service->setCronService(new CronService($this->configuration));
         $this->assertInstanceOf(CronService::class, $service->getCronService());
     }
 

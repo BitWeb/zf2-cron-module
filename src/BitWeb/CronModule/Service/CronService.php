@@ -2,13 +2,13 @@
 
 namespace BitWeb\CronModule\Service;
 
+use BitWeb\CronModule\Configuration;
+use BitWeb\CronModule\Exception\TimeoutException;
+use BitWeb\CronModule\Executor\Executor;
 use Cron\Cron;
 use Cron\Job\ShellJob;
 use Cron\Resolver\ArrayResolver;
 use Cron\Schedule\CrontabSchedule;
-use BitWeb\CronModule\Configuration;
-use BitWeb\CronModule\Exception\TimeoutException;
-use BitWeb\CronModule\Executor\Executor;
 
 class CronService
 {
@@ -44,11 +44,13 @@ class CronService
         return $this;
     }
 
-    public function setCron(Cron $cron) {
+    public function setCron(Cron $cron)
+    {
         $this->cron = $cron;
     }
 
-    public function setExecutor(Executor $executor) {
+    public function setExecutor(Executor $executor)
+    {
         $this->executor = $executor;
     }
 

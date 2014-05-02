@@ -1,8 +1,6 @@
 <?php
 
-namespace BitWebTest\CronModule;
-
-use BitWeb\CronModule\Configuration;
+namespace BitWeb\CronModule;
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
