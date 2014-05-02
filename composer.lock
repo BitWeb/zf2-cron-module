@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a7193b8d1ae2a27078121231e6e16b0a",
+    "hash": "1e3171f55935497cbf36330d4666c1f3",
     "packages": [
         {
             "name": "bitweb/stdlib",
-            "version": "dev-master",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BitWeb/stdlib.git",
-                "reference": "eda67e8d7a1f154f6a7cb6e60a17919a21718c05"
+                "reference": "85c8272d48c030308539117eaf0b24ad89155a3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BitWeb/stdlib/zipball/eda67e8d7a1f154f6a7cb6e60a17919a21718c05",
-                "reference": "eda67e8d7a1f154f6a7cb6e60a17919a21718c05",
+                "url": "https://api.github.com/repos/BitWeb/stdlib/zipball/85c8272d48c030308539117eaf0b24ad89155a3f",
+                "reference": "85c8272d48c030308539117eaf0b24ad89155a3f",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
             ],
             "description": "BitWeb library for standard functions.",
             "homepage": "http://bitweb.ee/",
-            "time": "2014-04-16 17:58:29"
+            "time": "2014-04-16 10:25:31"
         },
         {
             "name": "cron/cron",
@@ -646,20 +646,22 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "3.7.35",
+            "version": "3.7.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "83f9537e46346f75ed6925441ac259453213c7cc"
+                "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/83f9537e46346f75ed6925441ac259453213c7cc",
-                "reference": "83f9537e46346f75ed6925441ac259453213c7cc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
+                "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
                 "shasum": ""
             },
             "require": {
+                "ext-ctype": "*",
                 "ext-dom": "*",
+                "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-reflection": "*",
                 "ext-spl": "*",
@@ -675,9 +677,6 @@
                 "pear-pear.php.net/pear": "1.9.4"
             },
             "suggest": {
-                "ext-json": "*",
-                "ext-simplexml": "*",
-                "ext-tokenizer": "*",
                 "phpunit/php-invoker": "~1.1"
             },
             "bin": [
@@ -716,7 +715,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-04-21 06:25:54"
+            "time": "2014-04-30 12:24:19"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -821,9 +820,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "bitweb/stdlib": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.3.3"
     },

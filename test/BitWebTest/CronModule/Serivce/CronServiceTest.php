@@ -1,23 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kristjan
- * Date: 4/28/14
- * Time: 4:21 PM
- */
 
-namespace BitWeb\CronModule\Service;
+namespace BitWebTest\CronModule\Service;
 
 use BitWeb\CronModule\Configuration;
 use BitWeb\CronModule\Executor\Executor;
+use BitWeb\CronModule\Service\CronService;
 use Cron\Cron;
 use Cron\Job\ShellJob;
 use Cron\Resolver\ArrayResolver;
 use Cron\Schedule\CrontabSchedule;
-use Cron\Executor\Executor as CronExecutor;
 
-class CronServiceTest extends \PHPUnit_Framework_TestCase {
+class CronServiceTest extends \PHPUnit_Framework_TestCase
+{
 
+    /**
+     * @var Configuration
+     */
     public $configuration;
 
     public $correctConfig = [
@@ -88,7 +86,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase {
         $service->setCron($cronMock);
         $service->run();
         $serviceResolver = \PHPUnit_Framework_Assert::readAttribute($service, 'resolver');
-        $serviceExecutor = \PHPUnit_Framework_Assert::readAttribute($service, 'executor');
         $resolverJobs = \PHPUnit_Framework_Assert::readAttribute($serviceResolver, 'jobs');
 
         $this->assertEquals($jobs, $resolverJobs);
@@ -104,9 +101,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase {
         $job = new ShellJob();
         $job->setCommand('index.php application cron mail');
         $this->configuration = new Configuration($this->correctConfig);
-        $callback = function($time) {
-            sleep($time);
-        };
         $executorMock = $this->getMock(Executor::class);
         $executorMock->expects($this->any())->method('isRunning')->will($this->returnValue(true));
         $executorMock->expects($this->any())->method('getRunningJobs')->will($this->returnValue(array($job)));
@@ -116,32 +110,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase {
         sleep(3);
     }
 
-//    public function testRun()
-//    {
-//        $this->configuration = new Configuration($this->correctConfig);
-//        $executorMock = $this->getMock(Executor::class);
-//        $cronMock = $this->getMock(CronExecutor::class);
-//        $serviceMock = $this->getMock(CronService::class, array(), array(new Configuration($this->correctConfig)));
-//        $method = self::getMethod(CronService::class, 'assembleShellJobString');
-//        $method2 = self::getMethod(Executor::class, 'getRunningJobs');
-//        $method3 = self::getMethod(Executor::class, 'prepareSets');
-//
-//        $jobs = array();
-//        foreach ($this->configuration->getJobs() as $jobArray) {
-//            $job = new ShellJob();
-//            $job->setCommand($this->assembleShellJobString($jobArray['command']));
-//            $job->setSchedule(new CrontabSchedule($jobArray['schedule']));
-//
-//            $jobs[] = $job;
-//        }
-//
-//        $executorMock->expects($this->any())->method('getRunningJobs')->will($this->returnValue(array($jobs)));
-//        $method3->invokeArgs($executorMock, array($jobs));
-//        $this->assertEquals($jobs, $method2->invokeArgs($executorMock, array()));
-//
-//
-//
-//    }
 
     protected function assembleShellJobString($command)
     {
