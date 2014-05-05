@@ -15,9 +15,9 @@ class Module
     {
         return [
             'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => array(
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
+                ],
             ],
         ];
     }
