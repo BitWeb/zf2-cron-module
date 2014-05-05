@@ -1,8 +1,8 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
+return [
+    'router' => [
+        'routes' => [
             'cron-module-start' => [
                 'type' => 'Simple',
                 'options' => [
@@ -13,6 +13,6 @@ return array(
                     ],
                 ],
             ],
-        ),
-    ),
-);
+        ],
+    ],
+];

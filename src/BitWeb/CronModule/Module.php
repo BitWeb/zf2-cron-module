@@ -13,13 +13,13 @@ class Module
 
     public function getAutoloaderConfig()
     {
-        return array(
+        return [
             'Zend\Loader\StandardAutoloader' => [
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ],
-        );
+        ];
     }
 
     public function getConsoleUsage(AdapterInterface $console)

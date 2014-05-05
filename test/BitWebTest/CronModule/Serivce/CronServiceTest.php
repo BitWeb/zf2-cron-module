@@ -47,14 +47,14 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
     {
         $service = new CronService($this->configuration);
         $method = self::getMethod(CronService::class, 'getExecutor');
-        $this->assertInstanceOf(Executor::class, $method->invokeArgs($service, array()));
+        $this->assertInstanceOf(Executor::class, $method->invokeArgs($service, []));
     }
 
     public function testInitCron()
     {
         $service = new CronService($this->configuration);
         $method = self::getMethod(CronService::class, 'initCron');
-        $method->invokeArgs($service, array());
+        $method->invokeArgs($service, []);
         $this->assertInstanceOf(Cron::class, \PHPUnit_Framework_Assert::readAttribute($service, 'cron'));
         $this->assertInstanceOf(Executor::class, \PHPUnit_Framework_Assert::readAttribute($service, 'executor'));
         $this->assertInstanceOf(ArrayResolver::class, \PHPUnit_Framework_Assert::readAttribute($service, 'resolver'));
@@ -62,7 +62,7 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testRun()
     {
-        $jobs = array();
+        $jobs = [];
         foreach ($this->configuration->getJobs() as $jobArray) {
             $job = new ShellJob();
             $job->setCommand($this->assembleShellJobString($jobArray['command']));
@@ -93,7 +93,7 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
         $job->setCommand('index.php application cron mail');
         $executorMock = $this->getMock(Executor::class);
         $executorMock->expects($this->any())->method('isRunning')->will($this->returnValue(true));
-        $executorMock->expects($this->any())->method('getRunningJobs')->will($this->returnValue(array($job)));
+        $executorMock->expects($this->any())->method('getRunningJobs')->will($this->returnValue([$job]));
         $service = new CronService($this->configuration);
         $service->setExecutor($executorMock);
         $service->run();
