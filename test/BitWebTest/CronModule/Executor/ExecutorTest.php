@@ -16,7 +16,7 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->configuration = new Configuration(include 'BitWebTest/CronModule/TestAsset/config.php');
+        $this->configuration = new Configuration(include __DIR__ . '/../TestAsset/config.php');
     }
 
     public function testGetRunningJobs()
