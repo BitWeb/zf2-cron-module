@@ -1,6 +1,6 @@
 <?php
 
-namespace CronModule;
+namespace BitWeb\CronModule;
 
 use BitWeb\Stdlib\AbstractConfiguration;
 use Zend\Stdlib;
@@ -12,7 +12,7 @@ class Configuration extends AbstractConfiguration
      *
      * @var array
      */
-    protected $jobs = array();
+    protected $jobs = [];
 
     /**
      * PHP executable path for using shell jobs.
@@ -39,7 +39,7 @@ class Configuration extends AbstractConfiguration
      * @param array $shellJobs
      * @return $this
      */
-    public function setJobs(array $shellJobs = array())
+    public function setJobs(array $shellJobs = [])
     {
         $this->jobs = $shellJobs;
 
@@ -59,7 +59,7 @@ class Configuration extends AbstractConfiguration
      * @param array $job
      * @return $this
      */
-    public function setJob($key, array $job = array())
+    public function setJob($key, array $job = [])
     {
         $this->jobs[$key] = $job;
 

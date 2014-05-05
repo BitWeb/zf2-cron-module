@@ -1,9 +1,9 @@
 <?php
 
-namespace CronModule\Service\Cron;
+namespace BitWeb\CronModule\Service\Cron;
 
 
-use CronModule\Service\CronService;
+use BitWeb\CronModule\Service\CronService;
 
 interface CronServiceAwareInterface
 {

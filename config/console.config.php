@@ -1,18 +1,18 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'cron-module-start' => array(
+return [
+    'router' => [
+        'routes' => [
+            'cron-module-start' => [
                 'type' => 'Simple',
-                'options' => array(
+                'options' => [
                     'route' => 'cron module start',
-                    'defaults' => array(
-                        'controller' => 'CronModule\Controller\Index',
+                    'defaults' => [
+                        'controller' => 'BitWeb\CronModule\Controller\Index',
                         'action' => 'index'
-                    ),
-                ),
-            ),
-        ),
-    ),
-);
+                    ],
+                ],
+            ],
+        ],
+    ],
+];

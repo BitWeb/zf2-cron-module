@@ -1,4 +1,5 @@
 <?php
+
 return [
     'phpPath' => 'php',
     'scriptPath' => '/var/www/application/public/',
@@ -10,5 +11,5 @@ return [
     ],
 
     // timeout in seconds for the process, defaults to 600 seconds
-    'timeout' => 850
+    'timeout' => 2
 ];

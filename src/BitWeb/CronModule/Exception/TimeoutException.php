@@ -1,6 +1,6 @@
 <?php
 
-namespace CronModule\Exception;
+namespace BitWeb\CronModule\Exception;
 
 class TimeoutException extends RuntimeException
 {

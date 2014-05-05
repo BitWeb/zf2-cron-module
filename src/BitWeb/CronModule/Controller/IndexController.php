@@ -1,20 +1,26 @@
 <?php
 
-namespace CronModule\Controller;
+namespace BitWeb\CronModule\Controller;
 
-use CronModule\Exception\RuntimeException;
-use CronModule\Service\Cron\CronServiceAwareInterface;
-use CronModule\Service\Cron\CronServiceAwareTrait;
+use BitWeb\CronModule\Exception\RuntimeException;
+use BitWeb\CronModule\Service\Cron\CronServiceAwareInterface;
+use BitWeb\CronModule\Service\Cron\CronServiceAwareTrait;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\MvcEvent;
 
 class IndexController extends AbstractActionController implements CronServiceAwareInterface
 {
     use CronServiceAwareTrait;
 
-    public function indexAction()
+    public function onDispatch(MvcEvent $e)
     {
         $this->throwIfNotConsoleRequest();
+        return parent::onDispatch($e);
+    }
+
+    public function indexAction()
+    {
         $this->cronService->run();
     }
 
