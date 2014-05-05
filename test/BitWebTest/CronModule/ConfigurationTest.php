@@ -4,36 +4,32 @@ namespace BitWeb\CronModule;
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
-    public $correctConfig = [
-        'phpPath' => 'php',
-        'scriptPath' => '/var/www/application/public/',
-        'jobs' => [
-            [
-                'command' => 'index.php application cron mail',
-                'schedule' => '*/5 * * * *'
-            ]
-        ],
+    /**
+     * @var Configuration
+     */
+    public $configuration;
 
-        // timeout in seconds for the process, defaults to 600 seconds
-        'timeout' => 850
-    ];
+    public function setUp()
+    {
+        $this->configuration = new Configuration(include __DIR__ . '/TestAsset/config.php');
+    }
 
     public function testCanCreate()
     {
-        $this->assertInstanceOf(Configuration::class, new Configuration($this->correctConfig));
+        $this->assertInstanceOf(Configuration::class, $this->configuration);
     }
 
     public function testGetAndSetJobs()
     {
         $configuration = new Configuration();
-        $configuration->setJobs($this->correctConfig['jobs']);
-        $this->assertEquals($this->correctConfig['jobs'], $configuration->getJobs());
+        $configuration->setJobs($this->configuration->getJobs());
+        $this->assertEquals($this->configuration->getJobs(), $configuration->getJobs());
     }
 
     public function testSetAndGetJob()
     {
         $configuration = new Configuration();
-        $job = $this->correctConfig['jobs'][0];
+        $job = $this->configuration->getJobs()[0];
         $key = 'testJob';
 
         $configuration->setJob($key, $job);
@@ -43,7 +39,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testSetAndGetPhpPath()
     {
         $configuration = new Configuration();
-        $phpPath = $this->correctConfig['phpPath'];
+        $phpPath = $this->configuration->getPhpPath();
 
         $configuration->setPhpPath($phpPath);
         $this->assertEquals($phpPath, $configuration->getPhpPath());
@@ -52,7 +48,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testSetAndGetScriptPath()
     {
         $configuration = new Configuration();
-        $scriptPath = $this->correctConfig['scriptPath'];
+        $scriptPath = $this->configuration->getScriptPath();
 
         $configuration->setScriptPath($scriptPath);
         $this->assertEquals($scriptPath, $configuration->getScriptPath());
@@ -61,7 +57,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testSetAndGetTimeout()
     {
         $configuration = new Configuration();
-        $timeout = $this->correctConfig['timeout'];
+        $timeout = $this->configuration->getTimeout();
 
         $configuration->setTimeout($timeout);
         $this->assertEquals($timeout, $configuration->getTimeout());
