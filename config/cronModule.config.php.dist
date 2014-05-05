@@ -3,7 +3,7 @@ return [
     'phpPath' => 'php',
     'scriptPath' => '/var/www/application/public/',
     'jobs' => [
-        array[
+        [
             'command' => 'index.php application cron mail',
             'schedule' => '*/5 * * * *'
         ]
