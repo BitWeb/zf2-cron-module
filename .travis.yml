@@ -9,7 +9,7 @@ before_script:
   - composer install
 
 script:
-  - phpunit --coverage-text -c test/ --coverage-php build/coverage/coverage-{/.}.cov {}
+  - phpunit --coverage-text -c test/ --coverage-php build/coverage/coverage.cov
 
 after_script:
   # Merges the individual clover reports of each component into a single clover.xml
