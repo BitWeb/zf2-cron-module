@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/BitWeb/zf2-cron-module.svg?branch=2.0.0)](https://travis-ci.org/BitWeb/zf2-cron-module)
 ZF2 implementation for [Cron/Cron](https://github.com/Cron/Cron)
 ===============
 BitWeb ZF2 module for cron.
