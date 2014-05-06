@@ -2,7 +2,6 @@
 
 namespace BitWeb\CronModule\Service\Cron;
 
-
 use BitWeb\CronModule\Service\CronService;
 
 interface CronServiceAwareInterface

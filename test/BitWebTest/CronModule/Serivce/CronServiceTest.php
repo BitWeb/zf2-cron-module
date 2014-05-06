@@ -24,7 +24,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
          $this->configuration = new Configuration(include __DIR__ . '/../TestAsset/config.php');
     }
 
-
     protected static function getMethod($class, $name)
     {
         $class = new \ReflectionClass($class);
@@ -80,8 +79,6 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
         $resolverJobs = \PHPUnit_Framework_Assert::readAttribute($serviceResolver, 'jobs');
 
         $this->assertEquals($jobs, $resolverJobs);
-
-
     }
 
     /**
@@ -107,11 +104,8 @@ class CronServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CronService::class, $service->getCronService());
     }
 
-
     protected function assembleShellJobString($command)
     {
         return $this->configuration->getPhpPath() . ' ' . $this->configuration->getScriptPath() . $command;
     }
-
-
 }

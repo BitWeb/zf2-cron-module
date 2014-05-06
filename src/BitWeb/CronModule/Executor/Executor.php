@@ -2,7 +2,6 @@
 
 namespace BitWeb\CronModule\Executor;
 
-
 class Executor extends \Cron\Executor\Executor
 {
     /**
