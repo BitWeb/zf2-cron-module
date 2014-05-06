@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a3dd11bee2aafd9778660faa850335bd",
+    "hash": "a9c2d77791b2005df8f1c08a07d544f1",
     "packages": [
         {
             "name": "bitweb/stdlib",
@@ -292,25 +292,6 @@
                 "test"
             ],
             "time": "2014-03-27 16:05:26"
-        },
-        {
-            "name": "sebastianbergmann/phpcov",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpcov.git",
-                "reference": "1.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/sebastianbergmann/phpcov/archive/1.1.0.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "bin": [
-                "phpcov.php"
-            ],
-            "type": "library"
         },
         {
             "name": "symfony/config",

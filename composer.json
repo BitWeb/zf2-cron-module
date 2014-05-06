@@ -13,27 +13,6 @@
             "email": "rain@bitweb.ee"
         }
     ],
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "sebastianbergmann/phpcov",
-                "version": "1.1.0",
-                "dist": {
-                    "url": "https://github.com/sebastianbergmann/phpcov/archive/1.1.0.zip",
-                    "type": "zip"
-                },
-                "source": {
-                    "url": "https://github.com/sebastianbergmann/phpcov.git",
-                    "type": "git",
-                    "reference": "1.1.0"
-                },
-                "bin": [
-                    "phpcov.php"
-                ]
-            }
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "cron/cron": "1.0.0",
@@ -42,8 +21,7 @@
         "zendframework/zend-console": "~2.2",
         "zendframework/zend-servicemanager": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
-        "satooshi/php-coveralls": "dev-master",
-        "sebastianbergmann/phpcov": "1.1.0"
+        "satooshi/php-coveralls": "dev-master"
     },
     "require-dev": {
         "phpunit/PHPUnit": "3.7.*"
