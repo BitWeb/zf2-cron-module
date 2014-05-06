@@ -8,4 +8,10 @@ before_script:
   - composer self-update
   - composer install
 
-script: phpunit --coverage-text -c test/
+script:
+  - phpunit --coverage-text -c test/ --coverage-php build/coverage/coverage-{/.}.cov {}
+
+after_script:
+  # Merges the individual clover reports of each component into a single clover.xml
+  - php vendor/bin/phpcov.php --merge --clover build/logs/clover.xml --whitelist library build/coverage
+  - php vendor/bin/coveralls
