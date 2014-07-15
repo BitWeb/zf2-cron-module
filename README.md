@@ -6,11 +6,11 @@ BitWeb ZF2 module for cron.
 
 ### Installation
 
-Installation of DoctrineModule uses composer. For composer documentation, please refer to
+Installation of CronModule uses composer. For composer documentation, please refer to
 [getcomposer.org](http://getcomposer.org/).
 
 ```sh
-php composer.phar require doctrine/doctrine-module:0.*
+php composer.phar require bitweb/zf2-cron-module:0.*
 ```
 
 or add to your composer.json
