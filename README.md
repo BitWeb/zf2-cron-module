@@ -42,6 +42,8 @@ Add to your configuration:
 ]
 ```
 
+You can also get the configutation file sample from `config` folder `config/cronModule.config.php.dist`.
+
 
 #### Run cron job from command line
 ```sh
