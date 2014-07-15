@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/BitWeb/zf2-cron-module.svg?branch=master)](https://travis-ci.org/BitWeb/zf2-cron-module)
 [![Coverage Status](https://coveralls.io/repos/BitWeb/zf2-cron-module/badge.png?branch=development)](https://coveralls.io/r/BitWeb/zf2-cron-module?branch=master)
-ZF2 implementation for [Cron/Cron](https://github.com/Cron/Cron)
+[ZF2](https://github.com/zendframework/zf2) implementation for [Cron/Cron](https://github.com/Cron/Cron)
 ===============
-BitWeb ZF2 module for cron.
 
 ### Installation
 
