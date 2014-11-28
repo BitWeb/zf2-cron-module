@@ -9,7 +9,7 @@ Installation of CronModule uses composer. For composer documentation, please ref
 [getcomposer.org](http://getcomposer.org/).
 
 ```sh
-php composer.phar require bitweb/zf2-cron-module:0.*
+php composer.phar require bitweb/zf2-cron-module:2.0.*
 ```
 
 or add to your composer.json
@@ -30,11 +30,11 @@ Add to your configuration:
 
 ```php
 'cronModule' => [
-    'phpPath' => 'php',
+    'phpPath'    => 'php',
     'scriptPath' => '/path/to/application/public/folder/',
-    'jobs' => [
+    'jobs'       => [
         [
-            'command' => 'index.php application cron do-job',
+            'command'  => 'index.php application cron do-job',
             'schedule' => '* * * * *'
         ]
     ]
@@ -46,5 +46,5 @@ You can also get the configutation file sample from `config` folder `config/cron
 
 #### Run cron job from command line
 ```sh
-index.php cron module start
+php index.php cron module start
 ```
