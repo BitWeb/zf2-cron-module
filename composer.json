@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "cron/cron": "1.0.0",
+        "cron/cron": "~1.0",
         "bitweb/stdlib": "~1.1",
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-console": "~2.2",
