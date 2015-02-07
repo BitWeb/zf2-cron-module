@@ -76,6 +76,14 @@ class Configuration extends AbstractConfiguration
     }
 
     /**
+     * @return boolean
+     */
+    public function hasJobs()
+    {
+        return (bool) (count($this->jobs) > 0);
+    }
+
+    /**
      * @param string $path
      * @return $this
      */

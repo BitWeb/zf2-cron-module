@@ -64,4 +64,17 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $configuration->setTimeout($timeout);
         $this->assertEquals($timeout, $configuration->getTimeout());
     }
+
+    public function testSetAndHasJobs()
+    {
+        $configuration = new Configuration();
+        $configuration->setJobs($this->configuration->getJobs());
+        $this->assertTrue($configuration->hasJobs());
+    }
+
+    public function testSetAndHasNoJobs()
+    {
+        $configuration = new Configuration();
+        $this->assertFalse($configuration->hasJobs());
+    }
 } 
