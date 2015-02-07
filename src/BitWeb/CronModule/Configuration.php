@@ -80,7 +80,7 @@ class Configuration extends AbstractConfiguration
      */
     public function hasJobs()
     {
-        return (bool) (count($this->jobs) > 0)
+        return (bool) (count($this->jobs) > 0);
     }
 
     /**
