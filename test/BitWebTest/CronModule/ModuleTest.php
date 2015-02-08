@@ -39,5 +39,14 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $module = new Module();
         $this->assertTrue(is_array($module->getConsoleUsage(new Posix())));
     }
+
+    public function testGetControllerConfig()
+    {
+        $module = new Module();
+        $config = $module->getControllerConfig();
+        $this->assertEquals(['BitWeb\CronModule\Controller\Index' => 'BitWeb\CronModule\Controller\IndexController'], $config['invokables']);
+        $this->assertTrue(is_array($config['initializers']));
+        $this->assertInstanceOf('Closure', $config['initializers'][0]);
+    }
 }
  
