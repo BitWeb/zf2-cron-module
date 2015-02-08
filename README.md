@@ -41,6 +41,23 @@ Add to your configuration:
 ]
 ```
 
+General options: 
+
+| Option | Description |
+|--------|-------------|
+| phpPath | path to the php executable, usually "php" |
+| scriptPath | path to your applications public folder |
+| jobs | an array of jobs and their schedules |
+| timeout | timeout for the cron job |
+
+Options for cron jobs:
+
+| Option | Description |
+|--------|-------------|
+| command | the php script command to be run |
+| schedule | A valid Cron schedule |
+
+
 You can also get the configutation file sample from `config` folder `config/cronModule.config.php.dist`.
 
 
