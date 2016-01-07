@@ -36,6 +36,10 @@ Add to your configuration:
         [
             'command'  => 'index.php application cron do-job',
             'schedule' => '* * * * *'
+        ],
+        [
+            'command'  => 'index.php application cron do-another-job',
+            'schedule' => '0 * * * *'
         ]
     ]
 ]
