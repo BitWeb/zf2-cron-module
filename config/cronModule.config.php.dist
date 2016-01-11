@@ -1,14 +1,17 @@
 <?php
 return [
-    'phpPath' => 'php',
-    'scriptPath' => '/var/www/application/public/',
-    'jobs' => [
-        [
-            'command' => 'index.php application cron mail',
-            'schedule' => '*/5 * * * *'
+    'cronModule' => [
+        'phpPath'    => 'php',
+        'scriptPath' => '/path/to/application/public/folder/',
+        'jobs'       => [
+            [
+                'command'  => 'index.php application cron do-job',
+                'schedule' => '* * * * *'
+            ],
+            [
+                'command'  => 'index.php application cron do-another-job',
+                'schedule' => '0 * * * *'
+            ]
         ]
-    ],
-
-    // timeout in seconds for the process, defaults to 600 seconds
-    'timeout' => 850
+    ]
 ];
