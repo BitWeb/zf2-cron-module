@@ -31,6 +31,7 @@ Add to your configuration:
 ```php
 'cronModule' => [
     'phpPath'    => 'php',
+    //scriptPath will default to your root aplication public folder
     'scriptPath' => '/path/to/application/public/folder/',
     'jobs'       => [
         [

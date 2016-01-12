@@ -118,6 +118,9 @@ class Configuration extends AbstractConfiguration
      */
     public function getScriptPath()
     {
+        if (!$this->scriptPath) {
+            return getcwd() . DIRECTORY_SEPARATOR  . 'public' . DIRECTORY_SEPARATOR;
+        }
         return $this->scriptPath;
     }
 
