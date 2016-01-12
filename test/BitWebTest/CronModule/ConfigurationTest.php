@@ -56,6 +56,14 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($scriptPath, $configuration->getScriptPath());
     }
 
+    public function testgetDefaultScriptPath()
+    {
+        $configuration = new Configuration();
+        $scriptPath = $this->configuration->getScriptPath();
+         
+        $this->assertNotNull($scriptPath);
+    }
+
     public function testSetAndGetTimeout()
     {
         $configuration = new Configuration();
