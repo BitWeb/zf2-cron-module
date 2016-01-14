@@ -2,7 +2,6 @@
 return [
     'cronModule' => [
         'phpPath'    => 'php',
-        'scriptPath' => '/path/to/application/public/folder/',
         'jobs'       => [
             [
                 'command'  => 'index.php application cron do-job',
