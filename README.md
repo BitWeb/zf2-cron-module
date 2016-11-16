@@ -3,7 +3,7 @@
 [ZF2](https://github.com/zendframework/zf2) implementation for [Cron/Cron](https://github.com/Cron/Cron)
 ===============
 
-## Working with Zend Framework 3? [We've got you covered](https://github.com/BitWeb/zf3-cron-module).
+### Working with Zend Framework 3? [We've got you covered](https://github.com/BitWeb/zf3-cron-module).
 
 ### Installation
 
